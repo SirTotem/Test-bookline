@@ -1,6 +1,4 @@
 import json
-from typing import List
-
 
 DB_FILE = "app/db/database.json"
 
