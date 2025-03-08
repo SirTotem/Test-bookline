@@ -1,0 +1,35 @@
+{
+    "cars":[
+        {
+            "license": "8883EDW",
+            "brand": "Toyota Prius"
+        },
+        {
+            "license": "3869YTH",
+            "brand": "Seat Leon"
+        },
+        {
+            "license": "2971UIT",
+            "brand": "Opel Corsa"
+        },
+        {
+            "license": "1136PLO",
+            "brand": "Honda Civic"
+        },
+        {
+            "license": "9334BHW",
+            "brand": "Seat Ibiza"
+        }
+    ],
+    "bookings":{
+        "08-03-2025":["8883EDW", "3869YTH", "1136PLO"],
+        "09-03-2025":["8883EDW", "3869YTH", "9334BHW"],
+        "10-03-2025":["8883EDW"],
+        "11-03-2025":["2971UIT"],
+        "12-03-2025":["3869YTH","2971UIT"],
+        "13-03-2025":["9334BHW"]
+
+    }
+
+    
+}

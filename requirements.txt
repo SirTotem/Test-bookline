@@ -1,0 +1,4 @@
+fastapi
+pydantic
+flake8
+uvicorn 
