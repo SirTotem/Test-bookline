@@ -7,7 +7,7 @@ from app.db.database_helper import DatabaseHelper
 class Car(BaseModel):
     license: str
     brand: str
-    color: str
+    color: str = "Negro"
 
     def __str__(self):
         return self.brand + " (" + self.license + ")"

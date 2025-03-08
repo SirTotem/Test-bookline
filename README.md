@@ -4,10 +4,12 @@
 
 - Descarregar python
 
+- Preparar entorn
 python -m venv venv.
 .\venv\Scripts\activate
 
-pip install -r requirements.txt (si no lo tienes ja instalat)
+pip install -r requirements.txt
 
-code --install-extension ms-python.python (si no ho tens ja instalat)
+- Per mantenir en execució:
+
 
