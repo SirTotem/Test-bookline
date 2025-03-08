@@ -1,5 +1,5 @@
-from typing import List
 from pydantic import BaseModel
+from typing import Dict
 
 from app.db.database_helper import DatabaseHelper
 
@@ -7,37 +7,32 @@ from app.db.database_helper import DatabaseHelper
 class Car(BaseModel):
     license: str
     brand: str
+    color: str
 
     def __str__(self):
         return self.brand + " (" + self.license + ")"
 
 
 class CarRegister:
-    car_database: List[Car]
+    car_database: Dict[str, Car]
 
     def __init__(self):
-        self.update_car_database()
-    
-    def update_car_database(self):
+        self.car_database = {}
+        self.read_car_database()
+
+    def read_car_database(self):
         db_helper = DatabaseHelper.read_database()
-        self.car_database = [Car(**car) for car in db_helper.get("cars", [])]
+        for license, car in db_helper.get("cars", {}).items():
+            self.car_database[license] = Car(license=license,
+                                             brand=car.get('brand'),
+                                             color=car.get('color'))
 
     def get_cars(self):
-        return [str(car) for car in self.car_database]
+        return [str(car) for _, car in self.car_database.items()]
 
     def search_car(self, license: str) -> Car:
-        for car in self.car_database:
-            if car.liscense == license:
-                return car
-        return None
+        return self.car_database.get(license, None)
 
-    def get_details_by_license(self, license: str) -> dict:
-        
-        car = self.search_car()
-        if car:
-            return str(car)
-
-        return None
 
     def add_car(self, car: Car):
         if not self.search_car(Car.license):
@@ -46,6 +41,6 @@ class CarRegister:
         else:
             pass
 
-    def delete_car(self, car: Car):
-        db = DatabaseHelper.read_database()
-        pass
+    def delete_car(self, license: str):
+        del self.car_database[license]
+        DatabaseHelper.write_cars(self.car_database)

@@ -1,10 +1,16 @@
+from typing import List, Dict
 from pydantic import BaseModel
-import datetime
-
-from app.models.car import Car
+from app.db.database_helper import DatabaseHelper
 
 
-class Booking(BaseModel):
-    registred_car: Car
-    date: datetime.date
+class BookingRegister(BaseModel):
+    booking_database: Dict[str, List[str]]
 
+    def __init__(self):
+        self.load_booking_database()
+    
+    def load_booking_database(self):
+        db_helper = DatabaseHelper.read_database()
+        for day, booking in db_helper.get("bookings", {}).items():
+            self.booking_database[day]
+            

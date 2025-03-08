@@ -1,26 +1,26 @@
 {
-    "cars":[
-        {
-            "license": "8883EDW",
-            "brand": "Toyota Prius"
+    "cars":{
+        "8883EDW": {
+            "brand": "Toyota Prius",
+            "color": "Azul"
         },
-        {
-            "license": "3869YTH",
+        "3869YTH": {
+            "color": "Rojo",
             "brand": "Seat Leon"
         },
-        {
-            "license": "2971UIT",
+        "2971UIT": {
+            "color": "Azul",
             "brand": "Opel Corsa"
         },
-        {
-            "license": "1136PLO",
+        "1136PLO":{
+            "color": "Amarillo",
             "brand": "Honda Civic"
         },
-        {
-            "license": "9334BHW",
+        "9334BHW":{
+            "color": "Negro",
             "brand": "Seat Ibiza"
         }
-    ],
+    },
     "bookings":{
         "08-03-2025":["8883EDW", "3869YTH", "1136PLO"],
         "09-03-2025":["8883EDW", "3869YTH", "9334BHW"],
