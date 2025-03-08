@@ -1,8 +1,10 @@
 from pydantic import BaseModel
-from models.car import Car
 import datetime
 
+from app.models.car import Car
 
-class BookingRegister(BaseModel):
+
+class Booking(BaseModel):
     registred_car: Car
     date: datetime.date
+
