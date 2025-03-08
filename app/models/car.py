@@ -33,14 +33,15 @@ class CarRegister:
     def search_car(self, license: str) -> Car:
         return self.car_database.get(license, None)
 
-
     def add_car(self, car: Car):
         if not self.search_car(Car.license):
             self.car_database.append(car)
-            DatabaseHelper.write_cars(self.car_database)
+            # DatabaseHelper.write_cars(self.car_database)
+            self.read_car_database()
         else:
             pass
 
     def delete_car(self, license: str):
         del self.car_database[license]
-        DatabaseHelper.write_cars(self.car_database)
+        # DatabaseHelper.write_cars(self.car_database)
+        self.read_car_database()

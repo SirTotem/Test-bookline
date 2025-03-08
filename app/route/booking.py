@@ -1,21 +1,21 @@
 from typing import List
 from fastapi import APIRouter
 
-from app.models.car import CarRegister
 from app.log.logger import logger
 from datetime import datetime
 
+from app.route.register import booking_register
 router = APIRouter()
-car_register = CarRegister()
+
 
 
 @router.get("/", response_model=List[str])
-def get_cars():
+def get_bookings():
     try:
-        return car_register.get_cars()
+        return booking_register.get_bookings()
     finally:
         logger.info({
             'timestamp': datetime.now(),
             'level': "INFO",
-            'message': "Se consultaron todas las reservas",
+            'message': "Se completo una consulta a todas las reservas",
         })
