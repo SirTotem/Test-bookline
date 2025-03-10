@@ -7,5 +7,6 @@ booking_register = BookingRegister()
 
 
 def save_to_database():
-    data = {'cars': car_register.to_dict(), 'bookings': booking_register.to_dict()}
+    data = {'cars': car_register.to_dict(),
+            'bookings': booking_register.to_dict()}
     DatabaseHelper.write_database(data)

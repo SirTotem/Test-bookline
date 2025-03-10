@@ -13,7 +13,7 @@ router = APIRouter()
 def get_cars():
     logger.info({
         'timestamp': datetime.now(), 'level': "INFO",
-        'message': f"Se ha iniciado la peticion para consultar los vehiculos",
+        'message': "Se ha iniciado la peticion para consultar los vehiculos",
     })
     try:
         result = car_register.get_cars()
@@ -50,7 +50,7 @@ def create_car(license: str, color: str, brand: str):
         new_car = Car(license=license, color=color, brand=brand)
         car_register.add_car(new_car)
         save_to_database()
-        
+
     except Exception as e:
         logger.error({
             'timestamp': datetime.now(), 'level': "ERROR",
@@ -78,10 +78,10 @@ def remove_car(license: str):
                 'message': f"Se ha intentado eliminar del registro el inexistente automovil {license}",
             })
             return 'El vehiculo no existe'
-            
+
         car_register.delete_car(license)
         save_to_database()
-        
+
     except Exception as e:
         logger.error({
                 'timestamp': datetime.now(), 'level': "ERROR",
