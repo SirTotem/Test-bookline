@@ -20,6 +20,6 @@ uvicorn app.main:app --reload
 - Per executar tests:
 
 ```bash
-    pytest > resultados.txt
+pytest > resultados.txt
 ```
 
