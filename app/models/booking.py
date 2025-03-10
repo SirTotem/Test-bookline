@@ -1,6 +1,12 @@
 from typing import List, Dict
+
+from pydantic import BaseModel
 from app.db.database_helper import DatabaseHelper
 
+
+class Booking(BaseModel):
+    day: str
+    license: str
 
 class BookingRegister:
     booking_database: Dict[str, List[str]]
@@ -19,7 +25,7 @@ class BookingRegister:
 
     def check_availability(self, day: str, license: str) -> bool:
         booking_day = self.booking_database.get(day, None)
-        return (not booking_day or (not booking_day.contains(license)))
+        return (not booking_day or (not license in booking_day))
 
     def add_booking(self, day: str, license: str) -> None:
         if not self.booking_database.get(day, None):
@@ -36,3 +42,9 @@ class BookingRegister:
 
     def get_day_booking(self, day: str) -> str:
         return f"El dia {day} estan alquilados los coches {', '.join(self.booking_database.get(day, []))}"
+    
+    def delete_car(self, license: str) -> None:
+        for _, booked_cars in self.booking_database.items():
+            if license in booked_cars:
+                booked_cars.remove(license)
+

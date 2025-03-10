@@ -12,4 +12,8 @@ pip install -r requirements.txt
 
 - Per mantenir en execució:
 
+uvicorn app.main:app --reload  
+
+- Per executar tests:
+    pytest > resultados.txt
 

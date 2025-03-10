@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException
 
 from app.models.car import Car
 from app.log.logger import logger
-from app.db.register import car_register, save_to_database
+from app.db.register import car_register, booking_register, save_to_database
 
 router = APIRouter()
 
@@ -32,34 +32,33 @@ def get_cars():
         return result
 
 
-@router.put("/", response_model=str)
-def create_car(license: str, color: str, brand: str):
+@router.post("/", response_model=str)
+def create_car(new_car: Car):
     logger.info({
         'timestamp': datetime.now(), 'level': "INFO",
-        'message': f"Se ha iniciado la peticion para crear el automovil {license}.",
+        'message': f"Se ha iniciado la peticion para crear el automovil {new_car.license}.",
     })
     try:
-        car = car_register.search_car(license)
+        car = car_register.search_car(new_car.license)
         if car:
             logger.warning({
                 'timestamp': datetime.now(), 'level': "WARNING",
-                'message': f"Se ha intentado crear el ya existente automovil {license}",
+                'message': f"Se ha intentado crear el ya existente automovil {new_car}",
             })
             return 'El vehiculo ya existe'
 
-        new_car = Car(license=license, color=color, brand=brand)
         car_register.add_car(new_car)
         save_to_database()
 
     except Exception as e:
         logger.error({
             'timestamp': datetime.now(), 'level': "ERROR",
-            'message': f"No se completo la creacion de automovil {license}. ERROR :{e}",
+            'message': f"No se completo la creacion de automovil {new_car.license}. ERROR :{e}",
         })
     else:
         logger.info({
             'timestamp': datetime.now(), 'level': "INFO",
-            'message': "Se completo la creacion de automovil {license}.",
+            'message': f"Se completo la creacion de automovil {new_car}.",
         })
         return f"Se ha añadido al registro el coche {str(new_car)}"
 
@@ -78,8 +77,8 @@ def remove_car(license: str):
                 'message': f"Se ha intentado eliminar del registro el inexistente automovil {license}",
             })
             return 'El vehiculo no existe'
-
         car_register.delete_car(license)
+        booking_register.delete_car(license)
         save_to_database()
 
     except Exception as e:
