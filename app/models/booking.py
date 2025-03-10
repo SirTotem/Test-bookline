@@ -8,6 +8,9 @@ class BookingRegister:
     def __init__(self):
         self.booking_database = {}
         self.load_booking_database()
+
+    def to_dict(self) -> Dict:
+        return self.booking_database
     
     def load_booking_database(self) -> None:
         db_helper = DatabaseHelper.read_database()

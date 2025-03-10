@@ -1,35 +1,50 @@
 {
-    "cars":{
+    "cars": {
         "8883EDW": {
             "brand": "Toyota Prius",
             "color": "Azul"
         },
         "3869YTH": {
-            "color": "Rojo",
-            "brand": "Seat Leon"
+            "brand": "Seat Leon",
+            "color": "Rojo"
         },
         "2971UIT": {
-            "color": "Azul",
-            "brand": "Opel Corsa"
+            "brand": "Opel Corsa",
+            "color": "Azul"
         },
-        "1136PLO":{
-            "color": "Amarillo",
-            "brand": "Honda Civic"
+        "1136PLO": {
+            "brand": "Honda Civic",
+            "color": "Amarillo"
         },
-        "9334BHW":{
-            "color": "Negro",
-            "brand": "Seat Ibiza"
-        }
+        "9334BHW": {
+            "brand": "Seat Ibiza",
+            "color": "Negro"
+        },
+
     },
-    "bookings":{
-        "08-03-2025":["8883EDW", "3869YTH", "1136PLO"],
-        "09-03-2025":["8883EDW", "3869YTH", "9334BHW"],
-        "10-03-2025":["8883EDW"],
-        "11-03-2025":["2971UIT"],
-        "12-03-2025":["3869YTH","2971UIT"],
-        "13-03-2025":["9334BHW"]
-
+    "bookings": {
+        "08-03-2025": [
+            "8883EDW",
+            "3869YTH",
+            "1136PLO"
+        ],
+        "09-03-2025": [
+            "8883EDW",
+            "3869YTH",
+            "9334BHW"
+        ],
+        "10-03-2025": [
+            "8883EDW"
+        ],
+        "11-03-2025": [
+            "2971UIT"
+        ],
+        "12-03-2025": [
+            "3869YTH",
+            "2971UIT"
+        ],
+        "13-03-2025": [
+            "9334BHW"
+        ]
     }
-
-    
 }
