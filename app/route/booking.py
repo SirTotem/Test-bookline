@@ -4,7 +4,7 @@ from fastapi import APIRouter
 from app.log.logger import logger
 from datetime import datetime
 
-from app.db.register import booking_register
+from app.db.register import booking_register, save_to_database
 from app.db.register import car_register
 router = APIRouter()
 
@@ -93,7 +93,11 @@ def add_booking(day: str, license: str = None):
                         'timestamp': datetime.now(), 'level': "WARNING",
                         'message': f"Se ha intentado hacer una reserva para un dia ({day}) sin vehiculos disponibles",
                     })
-
+            save_to_database()
+            logger.info({
+                        'timestamp': datetime.now(), 'level': "WARNING",
+                        'message': f"El registro actual de reservas para el dia {day} es: {booking_register.get_day_booking(day)}",
+                    })
         return response_model
 
     except Exception as e:
