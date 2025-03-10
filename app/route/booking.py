@@ -32,6 +32,7 @@ def get_bookings():
             })
         return result
 
+
 @router.get("/{day}", response_model=str)
 def get_bookings_by_day(day: str):
     try:
@@ -93,7 +94,7 @@ def add_booking(new_book: Booking):
                     booking_register.add_booking(day, license)
                     response_model = f'Se ha guardado la reserva para el dia {day} para el vehiculo {str(car_register.search_car(license))}'
                     break
-            
+
             logger.warning({
                         'timestamp': datetime.now(), 'level': "WARNING",
                         'message': f"Se ha intentado hacer una reserva para un dia ({day}) sin vehiculos disponibles",
@@ -102,7 +103,7 @@ def add_booking(new_book: Booking):
         logger.info({
                     'timestamp': datetime.now(), 'level': "WARNING",
                     'message': f"El registro actual de reservas para el dia {day} es: {booking_register.get_day_booking(day)}",
-                })
+        })
         return response_model
 
     except Exception as e:

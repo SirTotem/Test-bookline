@@ -8,7 +8,7 @@ class DatabaseHelper:
         try:
             with open(DB_FILE, "r", encoding="utf-8") as file:
                 return json.load(file)
-        except (FileNotFoundError, json.JSONDecodeError) as e:
+        except (FileNotFoundError, json.JSONDecodeError):
             return {"cars": {}, "bookings": {}}
 
     def write_database(data) -> None:
